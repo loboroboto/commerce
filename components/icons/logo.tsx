@@ -1,6 +1,21 @@
 import clsx from "clsx";
+import Image from "next/image";
+
+const STORE_SLUG = process.env.STORE_SLUG;
 
 export default function LogoIcon(props: React.ComponentProps<"svg">) {
+  if (STORE_SLUG) {
+    return (
+      <Image
+        src={`/logos/${STORE_SLUG}.png`}
+        alt={`${process.env.SITE_NAME ?? STORE_SLUG} logo`}
+        width={32}
+        height={32}
+        className={clsx("h-4 w-4", props.className)}
+      />
+    );
+  }
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
